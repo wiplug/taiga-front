@@ -14,4 +14,4 @@ tmp/
 app/config/main.coffee
 scss-lint.log
 e2e/screenshots/
-app/modules/compile-modules/
+app/modules/compile-modules
