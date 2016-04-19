@@ -5,7 +5,7 @@
 .attachments-header {
     align-content: center;
     align-items: center;
-    background: $whitish;
+    background: $mass-white;
     display: flex;
     justify-content: space-between;
     min-height: 36px;
@@ -84,7 +84,7 @@
         transition: background .2s ease-in;
     }
     &.sortable-placeholder {
-        background: $whitish;
+        background: $mass-white;
         height: 40px;
     }
     .attachment-name {
