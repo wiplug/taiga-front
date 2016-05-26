@@ -84,6 +84,15 @@ describe "CommentController", ->
         commentsCtrl.toggleCommentEditor()
         expect(commentsCtrl.toggleEditComment).to.be.true
 
+    it "cancel comment on keyup", () ->
+        commentsCtrl = controller "CommentCtrl"
+        commentsCtrl.toggleCommentEditor = sinon.stub()
+        event = {
+            keyCode: 27
+        }
+        commentsCtrl.checkCancelComment(event)
+        expect(commentsCtrl.toggleCommentEditor).have.been.called
+
     it "can Edit Comment", () ->
         commentsCtrl = controller "CommentCtrl"
 

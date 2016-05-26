@@ -1,8 +1,6 @@
 include ../../../partials/common/components/wysiwyg.jade
 
-.comment-wrapper(
-    ng-if="!vm.comment.delete_comment_date"
-)
+.comment-wrapper(ng-if="!vm.comment.delete_comment_date")
     img.comment-avatar(
         ng-src="{{vm.comment.user.photo}}"
         ng-alt="{{vm.comment.user.name}}"
@@ -22,38 +20,48 @@ include ../../../partials/common/components/wysiwyg.jade
                 )
                     span(translate="COMMENTS.SHOW_HISTORY")
                     tg-svg(svg-icon="icon-bulk")
-        p.comment-text {{vm.comment.comment}}
+        .comment-container
+            p.comment-text(
+                ng-if="!vm.toggleEditComment"
+                ng-bind-html="vm.comment.comment_html"
+            )
+            .comment-editor(
+                ng-if="vm.toggleEditComment"
+                ng-keyup="vm.checkCancelComment($event)"
+            )
+                .edit-comment(ng-model="vm.type")
+                    textarea(
+                        ng-model="vm.commentContent.comment"
+                    )
+                    .save-comment-wrapper
+                        button.button-green.save-comment(
+                            type="button"
+                            title="{{'COMMENTS.EDIT_COMMENT' | translate}}"
+                            translate="COMMENTS.EDIT_COMMENT"
+                            ng-disabled="!vm.commentContent.comment.length"
+                            ng-click="vm.onEditComment({commentId: vm.comment.id, commentData: vm.commentContent.comment})"
+                            tg-loading="vm.loading"
+                        )
     .comment-options(ng-if="::vm.canEditDeleteComment()")
         tg-svg.comment-option(
             svg-icon="icon-edit"
             svg-title-translate="COMMON.EDIT"
             ng-click="vm.toggleCommentEditor()"
+            ng-if="!vm.toggleEditComment"
+        )
+        tg-svg.comment-option(
+            svg-icon="icon-close"
+            svg-title-translate="COMMON.CANCEL"
+            ng-click="vm.toggleCommentEditor()"
+            ng-if="vm.toggleEditComment"
         )
         tg-svg.comment-option(
             svg-icon="icon-trash"
             svg-title-translate="COMMON.DELETE"
             ng-click="vm.onDeleteComment({commentId: vm.comment.id})"
+            ng-if="!vm.toggleEditComment"
         )
-.comment-editor(
-    ng-if="vm.toggleEditComment"
-)
-    tg-editable-wysiwyg.edit-comment(
-        ng-model="vm.type"
-    )
-        textarea(
-            tg-markitup="tg-markitup"
-            ng-model="vm.commentContent.comment"
-        )
-        +wysihelp
-        .save-comment-wrapper
-            button.button-green.save-comment(
-                type="button"
-                title="{{'COMMENTS.EDIT_COMMENT' | translate}}"
-                translate="COMMENTS.EDIT_COMMENT"
-                ng-disabled="!vm.commentContent.comment.length"
-                ng-click="vm.onEditComment({commentId: vm.comment.id, commentData: vm.commentContent.comment})"
-                tg-loading="vm.loading"
-            ) 
+
 .deleted-comment-wrapper(
     ng-if="vm.comment.delete_comment_date"
 )

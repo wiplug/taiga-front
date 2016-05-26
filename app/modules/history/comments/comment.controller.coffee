@@ -40,6 +40,10 @@ class CommentController
     toggleCommentEditor: () ->
         @.toggleEditComment = !@.toggleEditComment
 
+    checkCancelComment: (event) ->
+        if event.keyCode == 27
+            @.toggleCommentEditor()
+
     canEditDeleteComment: () ->
         if @currentUserService.getUser()
             @.user = @currentUserService.getUser()

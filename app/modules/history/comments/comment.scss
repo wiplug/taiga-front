@@ -79,13 +79,19 @@
         .comment-option {
             cursor: pointer;
             opacity: 0;
-            transition: opacity .2s;
         }
         .icon-edit {
             fill: $gray-light;
             margin-right: .5rem;
             &:hover {
                 fill: $gray;
+            }
+        }
+        .icon-close {
+            fill: $gray-light;
+            margin-right: .5rem;
+            &:hover {
+                fill: $red;
             }
         }
         .icon-trash {
@@ -133,9 +139,9 @@
         margin-top: 1rem;
     }
     .comment-editor {
-        margin-bottom: 2rem;
         textarea {
-            height: 3rem;
+            height: 5rem;
+            min-height: 5rem;
         }
     }
 }
