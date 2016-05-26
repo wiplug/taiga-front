@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-# File: subscriptions.controller.spec.coffee
+# File: comments.controller.spec.coffee
 ###
 
 describe "CommentsController", ->
@@ -22,8 +22,14 @@ describe "CommentsController", ->
     controller = null
     mocks = {}
 
+    _mocks = () ->
+        module ($provide) ->
+            provide = $provide
+            return null
+
     beforeEach ->
         module "taigaHistory"
+        _mocks()
 
         inject ($controller) ->
             controller = $controller
@@ -31,4 +37,5 @@ describe "CommentsController", ->
     it "set can add comment permission", () ->
         commentsCtrl = controller "CommentsCtrl"
         commentsCtrl.name = "us"
+        commentsCtrl.initializePermissions()
         expect(commentsCtrl.canAddCommentPermission).to.be.equal("comment_us")

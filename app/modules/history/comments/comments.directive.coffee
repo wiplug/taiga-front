@@ -14,12 +14,15 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-# File: comment.directive.coffee
+# File: comments.directive.coffee
 ###
 
 module = angular.module('taigaHistory')
 
 CommentsDirective = () ->
+    link = (scope, el, attrs, ctrl) ->
+        ctrl.initializePermissions()
+
     return {
         scope: {
             type: "<",
@@ -36,6 +39,7 @@ CommentsDirective = () ->
         bindToController: true,
         controller: 'CommentsCtrl',
         controllerAs: "vm"
+        link: link
     }
 
 module.directive("tgComments", CommentsDirective)
