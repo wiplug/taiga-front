@@ -29,7 +29,8 @@ HistorySectionDirective = () ->
         scope: {
             type: "=",
             name: "@",
-            id: "="
+            id: "=",
+            projectId: "="
         }
     }
 

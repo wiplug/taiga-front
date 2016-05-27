@@ -33,7 +33,8 @@ CommentsDirective = () ->
             onRestoreDeletedComment: "&",
             onAddComment: "&",
             onEditComment: "&",
-            loading: "<"
+            loading: "<",
+            projectId: "="
         },
         templateUrl:"history/comments/comments.html",
         bindToController: true,

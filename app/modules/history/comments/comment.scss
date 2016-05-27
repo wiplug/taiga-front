@@ -5,6 +5,11 @@
         textarea {
             height: 3rem;
         }
+        .preview-icon,
+        .edit {
+            position: absolute;
+            right: 1rem;
+        }
     }
     .save-comment-wrapper {
         align-items: flex-end;
