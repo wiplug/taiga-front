@@ -13,5 +13,5 @@
                 ng-click="displayFullEntry=!displayFullEntry"
             )
         p.entry-text(
-            ng-class="{'ellipsis': displayFullEntry}"
+            ng-class="{'ellipsis': !displayFullEntry}"
         ) {{entry.comment}}
