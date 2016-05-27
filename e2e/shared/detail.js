@@ -193,6 +193,7 @@ shared.assignedToTesting = function() {
 
 shared.historyTesting = async function() {
     let historyHelper = detailHelper.history();
+
     //Adding a comment
     historyHelper.selectCommentsTab();
 
@@ -202,6 +203,16 @@ shared.historyTesting = async function() {
     let newCommentsCounter = await historyHelper.countComments();
 
     expect(newCommentsCounter).to.be.equal(commentsCounter+1);
+
+    //Edit last comment
+    historyHelper.editLastComment();
+    let editComment = detailHelper.editComment();
+    editComment.updateText("This is the new and updated text");
+    editComment.saveComment();
+
+    //Show versions from last comment edited
+    historyHelper.showVersionsLastComment();
+    historyHelper.closeVersionsLastComment();
 
     //Deleting last comment
     let deletedCommentsCounter = await historyHelper.countDeletedComments();
@@ -232,7 +243,7 @@ shared.historyTesting = async function() {
 
     let activitiesCounter = await historyHelper.countActivities();
 
-    expect(activitiesCounter).to.be.least(newCommentsCounter);
+    expect(newCommentsCounter).to.be.least(activitiesCounter);
 }
 
 shared.blockTesting = async function() {

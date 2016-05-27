@@ -1,5 +1,5 @@
 nav.history-tabs
-    a.history-tab(
+    a.history-tab.e2e-comments-tab(
         href=""
         title="Comments"
         ng-click="onActiveComments()"
@@ -7,7 +7,7 @@ nav.history-tabs
         translate="COMMENTS.COMMENTS_COUNT"
         translate-values="{comments: commentsNum}"
     )
-    a.history-tab(
+    a.history-tab.e2e-activity-tab(
         href=""
         title="Activities"
         ng-click="onActiveActivities()"
@@ -21,7 +21,7 @@ nav.history-tabs
         ng-click="onOrderComments()"
         ng-class="{'new-first': top, 'old-first': !top}"
         ng-if="commentsNum > 1"
-    ) 
+    )
         span(
             translate="COMMENTS.OLDER_FIRST"
             ng-if="onReverse"
